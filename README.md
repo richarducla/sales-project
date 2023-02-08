@@ -8,6 +8,13 @@ This project is a particular implementation of reading a data file in csv format
 - [Migrate](https://github.com/golang-migrate/migrate)
 - [Make](https://community.chocolatey.org/packages/make) only windows users this guide
 
+
+## Description
+
+1. The standard csv library was used and not one like go arrow or even from other creators. because the improvement time was not that significant
+
+2. A copy from from pgx (pg library for go) is used for versatility and it does not consume many resources
+
 ## How to use it
 
 **Installing and provisioning the db**

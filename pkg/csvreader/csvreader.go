@@ -78,14 +78,13 @@ func parseSale(data []string) (models.Sale, error) {
 
 	date, err := time.Parse("2006-01-02", sale[2])
 	if err != nil {
-		fmt.Println(err)
-		fmt.Println("Error during conversion in date")
+		fmt.Println("Error during conversion in date %w", err)
 		return models.Sale{}, err
 	}
 
 	stock, err := strconv.Atoi(sale[3])
 	if err != nil {
-		fmt.Println("Error during conversion in stock")
+		fmt.Println("Error during conversion in stock %w", err)
 		return models.Sale{}, err
 	}
 

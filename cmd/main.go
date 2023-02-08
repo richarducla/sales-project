@@ -20,6 +20,10 @@ func main() {
 	file, _ := os.Open(fmt.Sprintf("./files/%s.csv", cfg.FileName))
 	defer file.Close()
 
+	err = sales.RemoveAll(cfg)
+	if err != nil {
+		panic(fmt.Errorf("can't deleted rows on table sales: %w", err))
+	}
 	rows := csvreader.Read(file)
 	sales.SaveSales(rows, cfg)
 }

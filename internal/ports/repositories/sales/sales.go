@@ -11,6 +11,31 @@ import (
 	"github.com/jackc/pgx/v4"
 )
 
+const (
+	deleteQuery = "delete from sales"
+)
+
+func RemoveAll(cfg config.Config) error {
+	conn, err := postgres.NewConn(cfg)
+	if err != nil {
+		fmt.Println("newDB", err)
+		return err
+	}
+
+	defer func() {
+		_ = conn.Close(context.Background())
+		fmt.Println("db closed")
+	}()
+
+	_, err = conn.Query(context.Background(), deleteQuery)
+	if err != nil {
+		return err
+	}
+
+	return nil
+
+}
+
 func SaveSales(rows []models.Sale, cfg config.Config) error {
 	chunks := getChunks(rows, cfg.ChunkSize)
 
