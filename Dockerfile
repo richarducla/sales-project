@@ -18,8 +18,6 @@ RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 
 WORKDIR /app
 
-RUN export $(cat .env.example | grep -v ^# | xargs)
-
 COPY --from=builder /app/build/server .
 COPY files/ /app/files
 
